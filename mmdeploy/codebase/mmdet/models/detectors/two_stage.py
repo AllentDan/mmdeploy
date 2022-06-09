@@ -54,6 +54,7 @@ def two_stage_detector__simple_test(ctx,
     """
     assert self.with_bbox, 'Bbox head must be implemented.'
     x = self.extract_feat(img)
+    return x[0]
     if proposals is None:
         proposals, _ = self.rpn_head.simple_test_rpn(x, img_metas)
     return self.roi_head.simple_test(x, proposals, img_metas, rescale=False)
