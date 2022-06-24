@@ -7,10 +7,11 @@ from .hardsigmoid import hardsigmoid__default
 from .instance_norm import instance_norm__tensorrt
 from .lstm import generic_rnn__ncnn
 from .squeeze import squeeze__default
+from .pad import _prepare_onnx_paddings__tensorrt
 
 __all__ = [
     'adaptive_avg_pool1d__default', 'adaptive_avg_pool2d__default',
     'adaptive_avg_pool3d__default', 'grid_sampler__default',
     'hardsigmoid__default', 'instance_norm__tensorrt', 'generic_rnn__ncnn',
-    'squeeze__default'
+    'squeeze__default', '_prepare_onnx_paddings__tensorrt'
 ]
