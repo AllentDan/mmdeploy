@@ -87,9 +87,7 @@ def windowmsa__forward__tensorrt(ctx, self, x, mask=None):
         attn = attn.view(-1, self.num_heads, N, N)
 
     # replace softmax with a workaround
-    attn = attn - attn.mean(dim=self.softmax.dim, keepdim=True)
-    attn = torch.exp(attn) / torch.exp(attn).sum(
-        dim=self.softmax.dim, keepdim=True)
+    attn = self.softmax(attn)
 
     attn = self.attn_drop(attn)
 
