@@ -168,9 +168,13 @@ models:
     metafile: configs/textdet/dbnet/metafile.yml
     model_configs:
       - configs/textdet/dbnet/dbnet_resnet18_fpnc_1200e_icdar2015.py
+      - configs/textdet/dbnet/dbnet_resnet50_1200e_icdar2015.py
+      - configs/textdet/dbnet/dbnet_resnet50-dcnv2_fpnc_1200e_icdar2015.py
+      - configs/textdet/dbnet/dbnet_resnet50-oclip_1200e_icdar2015.py
     pipelines:
       - *pipeline_ts_detection_fp32
       - *pipeline_ort_detection_dynamic_fp32
+      - *pipeline_trt_detection_dynamic_fp32
       - *pipeline_trt_detection_dynamic_fp16
       - *pipeline_ncnn_detection_static_fp32
       - *pipeline_pplnn_detection_dynamic_fp32
@@ -180,8 +184,11 @@ models:
     metafile: configs/textdet/dbnetpp/metafile.yml
     model_configs:
       - configs/textdet/dbnetpp/dbnetpp_resnet50_fpnc_1200e_icdar2015.py
+      - configs/textdet/dbnetpp/dbnetpp_resnet50-dcnv2_fpnc_1200e_icdar2015.py
+      - configs/textdet/dbnetpp/dbnetpp_resnet50-oclip_fpnc_1200e_icdar2015.py
     pipelines:
       - *pipeline_ort_detection_dynamic_fp32
+      - *pipeline_trt_detection_dynamic_fp32
       - *pipeline_trt_detection_dynamic_fp16
       - *pipeline_ncnn_detection_static_fp32
       - *pipeline_openvino_detection_dynamic_fp32
@@ -190,9 +197,11 @@ models:
     metafile: configs/textdet/panet/metafile.yml
     model_configs:
       - configs/textdet/panet/panet_resnet18_fpem-ffm_600e_icdar2015.py
+      - configs/textdet/panet/panet_resnet18_fpem-ffm_600e_ctw1500.py
     pipelines:
       - *pipeline_ts_detection_fp32
       - *pipeline_ort_detection_dynamic_fp32
+      - *pipeline_trt_detection_dynamic_fp32
       - *pipeline_trt_detection_dynamic_fp16
       - *pipeline_ncnn_detection_static_fp32
       - *pipeline_pplnn_detection_dynamic_fp32
@@ -202,6 +211,9 @@ models:
     metafile: configs/textdet/psenet/metafile.yml
     model_configs:
       - configs/textdet/psenet/psenet_resnet50_fpnf_600e_icdar2015.py
+      - configs/textdet/psenet/psenet_resnet50-oclip_fpnf_600e_icdar2015.py
+      - configs/textdet/psenet/psenet_resnet50_fpnf_600e_ctw1500.py
+      - configs/textdet/psenet/psenet_resnet50-oclip_fpnf_600e_ctw1500.py
     pipelines:
       - *pipeline_ts_detection_fp32
       - *pipeline_ort_detection_dynamic_fp32
@@ -214,6 +226,7 @@ models:
     metafile: configs/textdet/textsnake/metafile.yml
     model_configs:
       - configs/textdet/textsnake/textsnake_resnet50_fpn-unet_1200e_ctw1500.py
+      - configs/textdet/textsnake/textsnake_resnet50-oclip_fpn-unet_1200e_ctw1500.py
     pipelines:
       - *pipeline_ts_detection_fp32
       - *pipeline_ort_detection_dynamic_fp32
@@ -223,6 +236,9 @@ models:
     metafile: configs/textdet/maskrcnn/metafile.yml
     model_configs:
       - configs/textdet/maskrcnn/mask-rcnn_resnet50_fpn_160e_icdar2015.py
+      - configs/textdet/maskrcnn/mask-rcnn_resnet50-oclip_fpn_160e_icdar2015.py
+      - configs/textdet/maskrcnn/mask-rcnn_resnet50_fpn_160e_ctw1500.py
+      - configs/textdet/maskrcnn/mask-rcnn_resnet50-oclip_fpn_160e_ctw1500.py
     pipelines:
       - *pipeline_ts_detection_fp32
       - *pipeline_ort_detection_dynamic_fp32
@@ -235,6 +251,7 @@ models:
     pipelines:
       - *pipeline_ts_recognition_fp32
       - *pipeline_ort_recognition_dynamic_fp32
+      - *pipeline_trt_recognition_dynamic_fp32
       - *pipeline_trt_recognition_dynamic_fp16
       - *pipeline_ncnn_recognition_static_fp32
       - *pipeline_pplnn_recognition_dynamic_fp32
@@ -243,10 +260,12 @@ models:
     metafile: configs/textrecog/sar/metafile.yml
     model_configs:
       - configs/textrecog/sar/sar_resnet31_parallel-decoder_5e_st-sub_mj-sub_sa_real.py
+      - configs/textrecog/sar/sar_resnet31_sequential-decoder_5e_st-sub_mj-sub_sa_real.py
     pipelines:
       - *pipeline_ts_recognition_fp32
       - *pipeline_ort_recognition_dynamic_fp32
       - *pipeline_trt_recognition_dynamic_fp32
+      - *pipeline_trt_recognition_dynamic_fp16
 
   - name: SATRN
     metafile: configs/textrecog/satrn/metafile.yml
@@ -256,12 +275,15 @@ models:
       - *pipeline_ts_recognition_fp32
       - *pipeline_ort_recognition_dynamic_fp32
       - *pipeline_trt_recognition_dynamic_fp32
+      - *pipeline_trt_recognition_dynamic_fp16
 
   - name: ABINet
     metafile: configs/textrecog/abinet/metafile.yml
     model_configs:
       - configs/textrecog/abinet/abinet_20e_st-an_mj.py
+      - configs/textrecog/abinet/abinet-vision_20e_st-an_mj.py
     pipelines:
       - *pipeline_ts_recognition_fp32
       - *pipeline_ort_recognition_static_fp32
+      - *pipeline_trt_recognition_dynamic_fp32
       - *pipeline_trt_recognition_static_fp16
