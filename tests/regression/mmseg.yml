@@ -119,6 +119,18 @@ torchscript:
     deploy_config: configs/mmseg/segmentation_torchscript.py
 
 
+rknn:
+  pipeline_rknn_static_fp16: &pipeline_rknn_static_fp16
+    convert_image: *convert_image
+    backend_test: False
+    deploy_config: configs/mmseg/segmentation_rknn-fp16_static-320x320.py
+
+  pipeline_rknn_static_int8: &pipeline_rknn_static_int8
+    convert_image: *convert_image
+    backend_test: False
+    deploy_config: configs/mmseg/segmentation_rknn-int8_static-320x320.py
+
+
 models:
   - name: FCN
     metafile: configs/fcn/fcn.yml
@@ -131,6 +143,8 @@ models:
       - *pipeline_ncnn_static_fp32
       - *pipeline_pplnn_dynamic_fp32
       - *pipeline_openvino_dynamic_fp32
+      - *pipeline_rknn_static_fp16
+      - *pipeline_rknn_static_int8
 
   - name: PSPNet
     metafile: configs/pspnet/pspnet.yml
@@ -143,6 +157,8 @@ models:
       - *pipeline_ncnn_static_fp32
       - *pipeline_pplnn_static_fp32
       - *pipeline_openvino_static_fp32
+      - *pipeline_rknn_static_fp16
+      - *pipeline_rknn_static_int8
 
   - name: deeplabv3
     metafile: configs/deeplabv3/deeplabv3.yml
@@ -178,6 +194,8 @@ models:
       - *pipeline_trt_static_fp16
       - *pipeline_pplnn_static_fp32
       - *pipeline_openvino_static_fp32
+      - *pipeline_rknn_static_fp16
+      - *pipeline_rknn_static_int8
 
   - name: UNet
     metafile: configs/unet/unet.yml
@@ -189,6 +207,8 @@ models:
       - *pipeline_trt_dynamic_fp16
       - *pipeline_ncnn_static_fp32
       - *pipeline_pplnn_dynamic_fp32
+      - *pipeline_rknn_static_fp16
+      - *pipeline_rknn_static_int8
 
   - name: ANN
     metafile: configs/ann/ann.yml
@@ -208,6 +228,8 @@ models:
       - *pipeline_trt_static_fp16
       - *pipeline_ncnn_static_fp32
       - *pipeline_ts_fp32
+      - *pipeline_rknn_static_fp16
+      - *pipeline_rknn_static_int8
 
   - name: BiSeNetV1
     metafile: configs/bisenetv1/bisenetv1.yml
@@ -219,6 +241,8 @@ models:
       - *pipeline_ncnn_static_fp32
       - *pipeline_openvino_dynamic_fp32
       - *pipeline_ts_fp32
+      - *pipeline_rknn_static_fp16
+      - *pipeline_rknn_static_int8
 
   - name: BiSeNetV2
     metafile: configs/bisenetv2/bisenetv2.yml
@@ -241,6 +265,8 @@ models:
       - *pipeline_ncnn_static_fp32
       - *pipeline_openvino_dynamic_fp32
       - *pipeline_ts_fp32
+      - *pipeline_rknn_static_fp16
+      - *pipeline_rknn_static_int8
 
   - name: EMANet
     metafile: configs/emanet/emanet.yml
@@ -272,6 +298,8 @@ models:
       - *pipeline_ncnn_static_fp32
       - *pipeline_openvino_dynamic_fp32
       - *pipeline_ts_fp32
+      - *pipeline_rknn_static_fp16
+      - *pipeline_rknn_static_int8
 
   - name: FastFCN
     metafile: configs/fastfcn/fastfcn.yml
@@ -311,6 +339,8 @@ models:
       - *pipeline_ort_static_fp32_512x512
       - *pipeline_trt_static_fp16_512x512
       - *pipeline_openvino_static_fp32_512x512
+      - *pipeline_rknn_static_fp16
+      - *pipeline_rknn_static_int8
 
   - name: OCRNet
     metafile: configs/ocrnet/ocrnet.yml
@@ -322,6 +352,8 @@ models:
       - *pipeline_ncnn_static_fp32
       - *pipeline_openvino_dynamic_fp32
       - *pipeline_ts_fp32
+      - *pipeline_rknn_static_fp16
+      - *pipeline_rknn_static_int8
 
   - name: PointRend
     metafile: configs/point_rend/point_rend.yml
@@ -342,6 +374,8 @@ models:
       - *pipeline_ncnn_static_fp32
       - *pipeline_openvino_dynamic_fp32
       - *pipeline_ts_fp32
+      - *pipeline_rknn_static_fp16
+      - *pipeline_rknn_static_int8
 
   - name: STDC
     metafile: configs/stdc/stdc.yml
@@ -354,6 +388,8 @@ models:
       - *pipeline_ncnn_static_fp32
       - *pipeline_openvino_dynamic_fp32
       - *pipeline_ts_fp32
+      - *pipeline_rknn_static_fp16
+      - *pipeline_rknn_static_int8
 
   - name: UPerNet
     metafile: configs/upernet/upernet.yml
@@ -371,3 +407,5 @@ models:
       - *pipeline_trt_static_fp32_512x512
       - *pipeline_openvino_static_fp32_512x512
       - *pipeline_ncnn_static_fp32
+      - *pipeline_rknn_static_fp16
+      - *pipeline_rknn_static_int8

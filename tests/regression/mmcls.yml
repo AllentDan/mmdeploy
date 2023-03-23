@@ -105,6 +105,17 @@ torchscript:
     backend_test: True
     deploy_config: configs/mmcls/classification_torchscript.py
 
+rknn:
+  pipeline_rknn_static_fp16: &pipeline_rknn_static_fp16
+    convert_image: *convert_image
+    backend_test: False
+    deploy_config: configs/mmcls/classification_rknn-fp16_static-224x224.py
+
+  pipeline_rknn_static_int8: &pipeline_rknn_static_int8
+    convert_image: *convert_image
+    backend_test: False
+    deploy_config: configs/mmcls/classification_rknn-int8_static-224x224.py
+
 
 models:
   - name: ResNet
@@ -120,6 +131,8 @@ models:
       - *pipeline_ncnn_static_fp32
       - *pipeline_pplnn_dynamic_fp32
       - *pipeline_openvino_dynamic_fp32
+      - *pipeline_rknn_static_fp16
+      - *pipeline_rknn_static_int8
 
   - name: ResNeXt
     metafile: configs/resnext/metafile.yml
@@ -132,6 +145,8 @@ models:
       - *pipeline_ncnn_static_fp32
       - *pipeline_pplnn_dynamic_fp32
       - *pipeline_openvino_dynamic_fp32
+      - *pipeline_rknn_static_fp16
+      - *pipeline_rknn_static_int8
 
   - name: DenseNet
     metafile: configs/densenet/metafile.yml
@@ -144,6 +159,8 @@ models:
       - *pipeline_ncnn_static_fp32
       - *pipeline_pplnn_dynamic_fp32
       - *pipeline_openvino_dynamic_fp32
+      - *pipeline_rknn_static_fp16
+      - *pipeline_rknn_static_int8
 
   - name: SE-ResNet
     metafile: configs/seresnet/metafile.yml
@@ -156,6 +173,8 @@ models:
       - *pipeline_ncnn_static_fp32
       - *pipeline_pplnn_dynamic_fp32
       - *pipeline_openvino_dynamic_fp32
+      - *pipeline_rknn_static_fp16
+      - *pipeline_rknn_static_int8
 
   - name: MobileNetV2
     metafile: configs/mobilenet_v2/metafile.yml
@@ -168,6 +187,8 @@ models:
       - *pipeline_ncnn_static_fp32
       - *pipeline_pplnn_dynamic_fp32
       - *pipeline_openvino_dynamic_fp32
+      - *pipeline_rknn_static_fp16
+      - *pipeline_rknn_static_int8
 
   - name: ShuffleNetV1
     metafile: configs/shufflenet_v1/metafile.yml
@@ -178,6 +199,8 @@ models:
 #      - *pipeline_ort_static_fp32
       - *pipeline_trt_static_fp16
       - *pipeline_ncnn_static_fp32
+      - *pipeline_rknn_static_fp16
+      - *pipeline_rknn_static_int8
 #      - *pipeline_pplnn_dynamic_fp32
 #      - *pipeline_openvino_dynamic_fp32
 
@@ -190,6 +213,8 @@ models:
 #      - *pipeline_ort_static_fp32
       - *pipeline_trt_static_fp16
       - *pipeline_ncnn_static_fp32
+      - *pipeline_rknn_static_fp16
+      - *pipeline_rknn_static_int8
 #      - *pipeline_pplnn_dynamic_fp32
 #      - *pipeline_openvino_dynamic_fp32
 
